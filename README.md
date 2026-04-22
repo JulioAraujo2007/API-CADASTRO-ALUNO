@@ -86,5 +86,3 @@ server.port=8081
 ```
 
 ✅ Pronto!
-
-Agora a API já deve estar funcionando e pronta para uso 🎉
