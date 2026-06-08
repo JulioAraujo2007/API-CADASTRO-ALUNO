@@ -1,38 +1,145 @@
- # API Cadastro de Alunos
+# API Cadastro de Alunos
 
-Sistema desenvolvido em Java com comunicação com banco de dados MySQL utilizando JDBC.
+Sistema acadêmico desenvolvido em **Java** com integração ao banco de dados **MySQL** utilizando **JDBC**.
 
-O projeto permite:
+O projeto foi desenvolvido para gerenciamento acadêmico, permitindo o controle de:
 
-- Cadastro de alunos
-- Edição de alunos
-- Exclusão de alunos
-- Pesquisa de registros
-- Integração com banco MySQL
-- Testes unitários com JUnit
+* Cadastro de alunos
+* Cadastro de professores
+* Cadastro de disciplinas
+* Criação de turmas
+* Matrículas de alunos
+* Controle de notas e situação acadêmica
+* Relacionamentos entre entidades
+* Consultas utilizando **Views SQL**
+* Integração com banco MySQL
+* Testes unitários com **JUnit**
 
 ---
 
 # Tecnologias Utilizadas
 
-- Java JDK 8+
-- Apache NetBeans
-- JDBC
-- MySQL
-- JUnit 4
-- Hamcrest
+* Java JDK 8+
+* Apache NetBeans
+* JDBC
+* MySQL
+* SQL
+* JUnit 4
+* Hamcrest
 
 ---
 
 # Estrutura do Projeto
 
 ```text
-src/
- ├── br.com.controle
- ├── br.com.model
- ├── br.com.view
- └── br.com.testes
+API-CADASTRO-ALUNO/
+│── src/
+│   ├── br.com.controle
+│   ├── br.com.model
+│   ├── br.com.view
+│   └── br.com.testes
+│
+│── db/
+│   ├── schema.sql
+│   └── seed.sql
+│
+│── docs/
+│
+│── README.md
 ```
+
+---
+
+# Funcionalidades do Sistema
+
+## Alunos
+
+* Cadastro de alunos
+* Edição de dados
+* Exclusão de registros
+* Pesquisa de alunos
+
+## Professores
+
+* Cadastro de professores
+* Associação com disciplinas
+* Relacionamento com endereço
+
+## Disciplinas
+
+* Cadastro de disciplinas
+* Código único
+* Controle de carga horária
+
+## Turmas
+
+* Associação entre professor e disciplina
+* Controle de semestre
+* Controle de vagas
+
+## Matrículas
+
+* Relacionamento entre aluno e turma
+* Controle de situação:
+
+  * Cursando
+  * Aprovado
+  * Reprovado
+  * Trancado
+* Registro de nota final
+* Data de matrícula
+
+---
+
+# Banco de Dados
+
+O sistema utiliza o banco **MySQL** com modelagem relacional completa.
+
+### Entidades principais
+
+* ALUNOS
+* PROFESSOR
+* ENDERECO
+* DISCIPLINA
+* TURMA
+* MATRICULA
+
+### Recursos utilizados
+
+* Primary Key (PK)
+* Foreign Key (FK)
+* Constraints (`CHECK`, `UNIQUE`, `DEFAULT`)
+* Relacionamentos
+* `ENUM`
+* `AUTO_INCREMENT`
+* `VIEWS`
+
+---
+
+# Views Implementadas
+
+### `vw_alunos_matriculados`
+
+Consulta completa de alunos matriculados com:
+
+* aluno
+* disciplina
+* professor
+* semestre
+* nota final
+* situação acadêmica
+
+### `vw_professores_completo`
+
+Consulta de professores com endereço completo.
+
+### `vw_vagas_turma`
+
+Consulta de:
+
+* vagas totais
+* alunos matriculados
+* vagas disponíveis por turma
 
 ---
 
@@ -40,40 +147,57 @@ src/
 
 Antes de executar o projeto, instale:
 
-- Java JDK 8 ou superior
-- Apache NetBeans
-- MySQL Server
+* Java JDK 8 ou superior
+* Apache NetBeans
+* MySQL Server
 
 ---
 
 # Configuração do Banco de Dados
 
-## 1. Abrir o MySQL
+## 1. Criar o banco
 
-Crie o banco:
+Abra o MySQL e execute:
 
 ```sql
-CREATE DATABASE cadastro_alunos;
+CREATE DATABASE cadastro;
+USE cadastro;
 ```
 
----
+## 2. Executar os scripts
 
-## 2. Criar a tabela
+Na pasta:
+
+```text
+db/
+```
+
+Execute:
+
+### Estrutura do banco
 
 ```sql
-CREATE TABLE alunos (
-    mat INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100),
-    idade INT,
-    email VARCHAR(100)
-);
+schema.sql
+```
+
+### Dados de teste
+
+```sql
+seed.sql
+```
+
+Ou execute diretamente:
+
+```sql
+source schema.sql;
+source seed.sql;
 ```
 
 ---
 
 # Configuração do Driver MySQL
 
-O projeto utiliza o MySQL Connector/J manualmente.
+O projeto utiliza o **MySQL Connector/J**.
 
 ## Download do Driver
 
@@ -87,7 +211,7 @@ Selecione:
 Platform Independent
 ```
 
-Extraia o arquivo `.zip` e utilize o arquivo:
+Extraia o `.zip` e utilize o arquivo:
 
 ```text
 mysql-connector-j-9.7.0.jar
@@ -97,34 +221,15 @@ mysql-connector-j-9.7.0.jar
 
 # Adicionando o Driver no NetBeans
 
-## Passo a passo
-
 1. Clique com botão direito no projeto
-2. Properties
-3. Libraries
-4. Add JAR/Folder
+2. **Properties**
+3. **Libraries**
+4. **Add JAR/Folder**
 5. Selecione:
 
 ```text
 mysql-connector-j-9.7.0.jar
 ```
-
----
-
-# Corrigindo erro de biblioteca quebrada
-
-Caso apareça:
-
-```text
-Broken reference mysql-connector
-```
-
-Faça:
-
-1. Properties
-2. Libraries
-3. Remova a referência vermelha
-4. Adicione novamente o `.jar`
 
 ---
 
@@ -139,7 +244,7 @@ DAO.java
 Exemplo:
 
 ```java
-String url = "jdbc:mysql://localhost:3306/cadastro_alunos";
+String url = "jdbc:mysql://localhost:3306/cadastro";
 String usuario = "root";
 String senha = "123456";
 ```
@@ -154,7 +259,7 @@ No NetBeans:
 Run Project
 ```
 
-ou:
+ou pressione:
 
 ```text
 F6
@@ -164,29 +269,19 @@ F6
 
 # Configuração do JUnit
 
-O projeto utiliza JUnit 4.
+O projeto utiliza **JUnit 4**.
 
-## Download do JUnit 4
-
-https://junit.org/junit4/
-
-ou:
+## Download do JUnit
 
 https://repo1.maven.org/maven2/junit/junit/4.13.2/
 
-Baixe:
+Arquivo:
 
 ```text
 junit-4.13.2.jar
 ```
 
----
-
-# Download do Hamcrest
-
-O JUnit 4 depende do Hamcrest.
-
-Baixe:
+## Download do Hamcrest
 
 https://repo1.maven.org/maven2/org/hamcrest/hamcrest/2.2/
 
@@ -198,34 +293,9 @@ hamcrest-2.2.jar
 
 ---
 
-# Adicionando JUnit no NetBeans
-
-1. Clique direito no projeto
-2. Properties
-3. Libraries
-4. Add JAR/Folder
-5. Adicione:
-
-```text
-junit-4.13.2.jar
-hamcrest-2.2.jar
-```
-
----
-
-# Estrutura de Testes
-
-```text
-Test Packages
- └── br.com.testes
-        └── AlunoTest.java
-```
-
----
-
 # Executando os Testes
 
-## Executar todos os testes
+### Executar todos os testes
 
 Clique direito em:
 
@@ -239,13 +309,9 @@ Depois:
 Test File
 ```
 
----
+### Executar teste individual
 
-## Executar teste individual
-
-Clique dentro do método com `@Test`.
-
-Depois:
+Clique dentro do método `@Test` e execute:
 
 ```text
 Run Focused Test Method
@@ -255,13 +321,12 @@ Run Focused Test Method
 
 # Funcionalidades Testadas
 
-- Cadastro de aluno
-- Validação de campos obrigatórios
-- Validação de email
-- Listagem de alunos
-- Atualização de dados
-- Exclusão de aluno
-- Mensagens de sucesso e erro
+* Cadastro de alunos
+* Atualização de dados
+* Exclusão de registros
+* Validação de campos obrigatórios
+* Integração com banco MySQL
+* Validação de regras do sistema
 
 ---
 
@@ -271,11 +336,10 @@ Run Focused Test Method
 
 Verifique:
 
-- se o MySQL está rodando
-- usuário e senha
-- banco criado corretamente
-
----
+* se o MySQL está rodando
+* usuário e senha
+* porta do MySQL
+* banco criado corretamente
 
 ## Erro:
 
@@ -288,8 +352,6 @@ Adicione:
 ```text
 hamcrest-2.2.jar
 ```
-
----
 
 ## Erro:
 
@@ -307,15 +369,16 @@ junit-4.13.2.jar
 
 # Melhorias Futuras
 
-- Migração para Maven
-- Migração para Spring Boot
-- API REST
-- Mockito
-- Testes automatizados avançados
-- Docker
-- Integração contínua
+* Migração para Maven
+* API REST
+* Spring Boot
+* Docker
+* Mockito
+* Testes automatizados avançados
+* Integração contínua (CI/CD)
 
 ---
 
 # Autor
-Grupo-05-Teste-de-software
+
+**Banco-de-Dados**
