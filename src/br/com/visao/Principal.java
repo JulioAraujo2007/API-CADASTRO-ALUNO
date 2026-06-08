@@ -27,14 +27,23 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMAluno = new javax.swing.JMenu();
+        jMCadastrarAluno = new javax.swing.JMenuItem();
+        jMExcluirAluno = new javax.swing.JMenuItem();
+        jMAlterarAluno = new javax.swing.JMenuItem();
+        jMPesquisar = new javax.swing.JMenuItem();
+        jMSair = new javax.swing.JMenuItem();
+        jMProfessor = new javax.swing.JMenu();
+        jMCadastrarProfessor = new javax.swing.JMenuItem();
+        jMExcluirProfessor = new javax.swing.JMenuItem();
+        jMAlterarProfessor = new javax.swing.JMenuItem();
+        jMPesquisar1 = new javax.swing.JMenuItem();
+        jMSair1 = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,49 +51,99 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 51, 0));
         jLabel1.setText("SCA- Sistema de Cadastro de Aluno");
 
-        jMenu1.setText("Arquivo");
+        jMAluno.setText("Aluno");
 
-        jMenuItem1.setText("Cadastrar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMCadastrarAluno.setForeground(new java.awt.Color(255, 51, 51));
+        jMCadastrarAluno.setText("Cadastrar Aluno");
+        jMCadastrarAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMCadastrarAlunoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMAluno.add(jMCadastrarAluno);
 
-        jMenuItem2.setText("Excluir");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMExcluirAluno.setForeground(new java.awt.Color(255, 51, 0));
+        jMExcluirAluno.setText("Excluir Aluno");
+        jMExcluirAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMExcluirAlunoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMAluno.add(jMExcluirAluno);
 
-        jMenuItem3.setText("Pesquisar");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMAlterarAluno.setForeground(new java.awt.Color(255, 51, 0));
+        jMAlterarAluno.setText("Alterar Aluno");
+        jMAlterarAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMAlterarAlunoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMAluno.add(jMAlterarAluno);
 
-        jMenuItem5.setText("Alterar");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMPesquisar.setText("Pesquisar");
+        jMPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jMPesquisarActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        jMAluno.add(jMPesquisar);
 
-        jMenuItem4.setText("Sair");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMSair.setText("Sair");
+        jMSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jMSairActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMAluno.add(jMSair);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMAluno);
+
+        jMProfessor.setText("Professor");
+
+        jMCadastrarProfessor.setForeground(new java.awt.Color(51, 153, 255));
+        jMCadastrarProfessor.setText("Cadastrar Professor");
+        jMCadastrarProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMCadastrarProfessorActionPerformed(evt);
+            }
+        });
+        jMProfessor.add(jMCadastrarProfessor);
+
+        jMExcluirProfessor.setForeground(new java.awt.Color(51, 153, 255));
+        jMExcluirProfessor.setText("Excluir Professor");
+        jMExcluirProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMExcluirProfessorActionPerformed(evt);
+            }
+        });
+        jMProfessor.add(jMExcluirProfessor);
+
+        jMAlterarProfessor.setForeground(new java.awt.Color(51, 153, 255));
+        jMAlterarProfessor.setText("Alterar Professor");
+        jMAlterarProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMAlterarProfessorActionPerformed(evt);
+            }
+        });
+        jMProfessor.add(jMAlterarProfessor);
+
+        jMPesquisar1.setText("Pesquisar");
+        jMPesquisar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMPesquisar1ActionPerformed(evt);
+            }
+        });
+        jMProfessor.add(jMPesquisar1);
+
+        jMSair1.setText("Sair");
+        jMSair1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMSair1ActionPerformed(evt);
+            }
+        });
+        jMProfessor.add(jMSair1);
+
+        jMenuBar1.add(jMProfessor);
 
         setJMenuBar(jMenuBar1);
 
@@ -95,48 +154,77 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(304, 304, 304)
                 .addComponent(jLabel1)
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jLabel1)
-                .addContainerGap(561, Short.MAX_VALUE))
+                .addContainerGap(589, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(1000, 700));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMCadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMCadastrarAlunoActionPerformed
         // TODO add your handling code here:
       FormAluno cadaluno = new FormAluno();
         cadaluno.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMCadastrarAlunoActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMExcluirAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMExcluirAlunoActionPerformed
         // TODO add your handling code here:
          FormDeletarAluno delaluno = new FormDeletarAluno();
         delaluno.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jMExcluirAlunoActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMPesquisarActionPerformed
         // TODO add your handling code here:
-        FormPesquisar pesquisar = new FormPesquisar();
+        FormPesquisarAluno pesquisar = new FormPesquisarAluno();
         pesquisar.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_jMPesquisarActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jMSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSairActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_jMSairActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void jMAlterarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAlterarAlunoActionPerformed
         // TODO add your handling code here:
-        FormAlterar falt = new FormAlterar();
+        FormAlterarAluno falt = new FormAlterarAluno();
         falt.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_jMAlterarAlunoActionPerformed
+
+    private void jMCadastrarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMCadastrarProfessorActionPerformed
+        // TODO add your handling code here:
+        FormProfessor cadaprofessor = new FormProfessor();
+        cadaprofessor.setVisible(true);
+    }//GEN-LAST:event_jMCadastrarProfessorActionPerformed
+
+    private void jMExcluirProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMExcluirProfessorActionPerformed
+        // TODO add your handling code here:
+        FormDeletarProfessor deletaprofessor = new FormDeletarProfessor();
+        deletaprofessor.setVisible(true);
+    }//GEN-LAST:event_jMExcluirProfessorActionPerformed
+
+    private void jMAlterarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAlterarProfessorActionPerformed
+        // TODO add your handling code here:
+        FormAlterarProfessor alteraprofessor = new FormAlterarProfessor();
+        alteraprofessor.setVisible(true);
+    }//GEN-LAST:event_jMAlterarProfessorActionPerformed
+
+    private void jMPesquisar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMPesquisar1ActionPerformed
+        // TODO add your handling code here:
+        FormPesquisarProfessor pesquisaprofessor = new FormPesquisarProfessor();
+        pesquisaprofessor.setVisible(true);
+    }//GEN-LAST:event_jMPesquisar1ActionPerformed
+
+    private void jMSair1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSair1ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMSair1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,12 +263,19 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuItem jMAlterarAluno;
+    private javax.swing.JMenuItem jMAlterarProfessor;
+    private javax.swing.JMenu jMAluno;
+    private javax.swing.JMenuItem jMCadastrarAluno;
+    private javax.swing.JMenuItem jMCadastrarProfessor;
+    private javax.swing.JMenuItem jMExcluirAluno;
+    private javax.swing.JMenuItem jMExcluirProfessor;
+    private javax.swing.JMenuItem jMPesquisar;
+    private javax.swing.JMenuItem jMPesquisar1;
+    private javax.swing.JMenu jMProfessor;
+    private javax.swing.JMenuItem jMSair;
+    private javax.swing.JMenuItem jMSair1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 }

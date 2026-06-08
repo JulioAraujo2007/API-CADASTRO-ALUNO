@@ -56,6 +56,11 @@ public class FormAluno extends javax.swing.JFrame {
         });
 
         jBlimpar.setText("Limpar");
+        jBlimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBlimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,6 +130,10 @@ public class FormAluno extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Erro de : " + e.getMessage());
         }
     }//GEN-LAST:event_jBcadastrarActionPerformed
+
+    private void jBlimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBlimparActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBlimparActionPerformed
 
     /**
      * @param args the command line arguments

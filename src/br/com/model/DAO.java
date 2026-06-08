@@ -16,7 +16,10 @@ public class DAO {
  	public void abrirBanco() throws SQLException {// criando metodo para acessar o banco
   try {
 	Class.forName("com.mysql.cj.jdbc.Driver");//classe para utiliza??o do arquivo com configurçoes do serivdor mysql
-	String url = "jdbc:mysql://localhost:3306/cadastro";// drive servidor e banco de dados a serem utilizados e indica??o do banco a ser utilizado
+	String url = "jdbc:mysql://localhost:3306/cadastro"
+           + "?useSSL=false&allowPublicKeyRetrieval=true"
+           + "&serverTimezone=America/Sao_Paulo"
+           + "&characterEncoding=utf8";;// drive servidor e banco de dados a serem utilizados e indica??o do banco a ser utilizado
 	String user ="root";// usuario do banco de dados
 	String senha ="2010026456";//senha do usuario do banco de dados    
 	con=(Connection) DriverManager.getConnection
@@ -39,9 +42,8 @@ public class DAO {
      }    
     
     public void fecharBanco() throws Exception{//criando metodo que fechao conex?o com o banco
-       if (ps!= null) { //limpando os dados de conex?o   
-            ps.close();//fechando o ambiente de conex?o
+       if (ps  != null) { ps.close();  }
+        if (con != null) { con.close(); }
             System.out.println("Execu?ao da Query fechada\n");
     }  
         }
-}

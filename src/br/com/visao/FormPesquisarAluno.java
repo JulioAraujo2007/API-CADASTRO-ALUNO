@@ -8,18 +8,19 @@ package br.com.visao;
 import br.com.controle.Aluno;
 import br.com.model.CadastroAlunoDAO;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Joao
  */
-public class FormPesquisar extends javax.swing.JFrame {
+public class FormPesquisarAluno extends javax.swing.JFrame {
 
     /**
      * Creates new form FormPesquisar
      */
-    public FormPesquisar() {
+    public FormPesquisarAluno() {
         initComponents();
     }
 
@@ -32,8 +33,8 @@ public class FormPesquisar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBPesquisar = new javax.swing.JButton();
+        jBLimpar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTpesquisar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -42,14 +43,14 @@ public class FormPesquisar extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jButton1.setText("Pesquisar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBPesquisar.setText("Pesquisar");
+        jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBPesquisarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Limpar");
+        jBLimpar.setText("Limpar");
 
         jLabel1.setText("Digite a Matricula para pesquisar");
 
@@ -60,7 +61,15 @@ public class FormPesquisar extends javax.swing.JFrame {
             new String [] {
                 "Matricula", "Nome"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTaluno);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -77,9 +86,9 @@ public class FormPesquisar extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jTpesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(jBPesquisar)
                                 .addGap(93, 93, 93)
-                                .addComponent(jButton2))))
+                                .addComponent(jBLimpar))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -94,8 +103,8 @@ public class FormPesquisar extends javax.swing.JFrame {
                     .addComponent(jTpesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jBPesquisar)
+                    .addComponent(jBLimpar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -105,35 +114,70 @@ public class FormPesquisar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
         // TODO add your handling code here:
         
-        try {
-        Aluno a = new Aluno();
-        CadastroAlunoDAO ca = new CadastroAlunoDAO();        
-        DefaultTableModel alunopesque = (DefaultTableModel) jTaluno.getModel();  
-        if (jTpesquisar.getText().equalsIgnoreCase("")){
-        ArrayList<Aluno> alunos = ca.PesquisarTudo();  
-        for (int i = 0; i < alunos.size(); i++) {                
+   try {
+
+    Aluno a = new Aluno();
+    CadastroAlunoDAO ca = new CadastroAlunoDAO();
+
+    DefaultTableModel alunopesque =
+            (DefaultTableModel) jTaluno.getModel();
+
+    // limpa a tabela antes da pesquisa
+    alunopesque.setRowCount(0);
+
+    // se o campo estiver vazio, busca todos
+    if (jTpesquisar.getText().trim().equals("")) {
+
+        ArrayList<Aluno> alunos = ca.PesquisarTudo();
+
+        for (int i = 0; i < alunos.size(); i++) {
+
             a = alunos.get(i);
-            alunopesque.addRow(new Object[]{a.getMat(),a.getNome()});
-        } 
-        }else{
-          a.setMat(Integer.valueOf(jTpesquisar.getText())); 
-          ca.PesquisarRegistro(a);
-          alunopesque.addRow(new Object[]{a.getMat(),a.getNome()});
+
+            alunopesque.addRow(new Object[]{
+                a.getMat(),
+                a.getNome()
+            });
         }
+
+    } else {
+
+        a.setMat(Integer.parseInt(jTpesquisar.getText()));
+
+        ca.PesquisarRegistro(a);
+
+        // s? adiciona se encontrou
+        if (a.getNome() != null) {
+
+            alunopesque.addRow(new Object[]{
+                a.getMat(),
+                a.getNome()
+            });
+
+        } else {
+
+            JOptionPane.showMessageDialog(
+                null,
+                "Aluno n?o encontrado!"
+            );
+        }
+    }
+
+    jTpesquisar.setText("");
+    jTpesquisar.requestFocus();
+
+} catch (Exception e) {
+
+    JOptionPane.showMessageDialog(
+        null,
+        "Erro: " + e.getMessage()
+    );
+}
         
-        jTpesquisar.setText(null);
-        jTpesquisar.requestFocus();
-       }
-       catch (Exception e){
-            System.out.println("Erro " + e.getMessage());
-       }
-        
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,27 +196,28 @@ public class FormPesquisar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPesquisarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPesquisarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPesquisarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPesquisarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormPesquisar().setVisible(true);
+                new FormPesquisarAluno().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBLimpar;
+    private javax.swing.JButton jBPesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTaluno;
