@@ -132,15 +132,6 @@ Consulta completa de alunos matriculados com:
 ### `vw_professores_completo`
 
 Consulta de professores com endereço completo.
-
-### `vw_vagas_turma`
-
-Consulta de:
-
-* vagas totais
-* alunos matriculados
-* vagas disponíveis por turma
-
 ---
 
 # Pré-requisitos
